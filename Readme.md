@@ -7,7 +7,7 @@
 ### Segundo semestre 2021
 
 # Manual De Configuración 
-El presente proyecto trata sobre la configuración y conexión a una VPN y que los equipos conectados a la VPN puedan comunicarse entre si. 
+El presente proyecto trata sobre la configuración y conexión a una red privada a través de una VPN y que los equipos conectados a la VPN puedan comunicarse entre si. 
 
 Se utilizó el servicio de nube de Google Cloud para crear una máquina virtual la cual actúa como conector de VPN para acceder a la red.
 
@@ -20,9 +20,11 @@ La red creada es la siguiente:
 Una red privada virtual ( VPN ) extiende una red privada a través de una red pública y permite a los usuarios enviar y recibir datos a través de redes públicas o compartidas como si sus dispositivos informáticos estuvieran conectados directamente a la red privada. Las aplicaciones que se ejecutan a través de una VPN pueden, por tanto, beneficiarse de la funcionalidad, la seguridad y la gestión de la red privada. 
 
 ## Qué es ICMP
-El Protocolo de mensajes de control de Internet ( ICMP ) es un protocolo de apoyo en el conjunto de protocolos de Internet . Lo utilizan los dispositivos de red , incluidos los enrutadores , para enviar mensajes de error e información operativa que indica el éxito o el fracaso al comunicarse con otra dirección IP , por ejemplo, se indica un error cuando un servicio solicitado no está disponible o que un host o enrutador no pudo ser alcanzado. ICMP se diferencia de los protocolos de transporte como TCP y UDP.en el sentido de que no se utiliza normalmente para intercambiar datos entre sistemas, ni las aplicaciones de red del usuario final lo emplean habitualmente.
+El Protocolo de mensajes de control de Internet ( ICMP ) es un protocolo de apoyo en el conjunto de protocolos de Internet. Lo utilizan los dispositivos de red , incluidos los enrutadores , para enviar mensajes de error e información operativa que indica el éxito o el fracaso al comunicarse con otra dirección IP, por ejemplo, se indica un error cuando un servicio solicitado no está disponible o que un host o enrutador no pudo ser alcanzado. ICMP se diferencia de los protocolos de transporte como TCP y UDP en el sentido de que no se utiliza normalmente para intercambiar datos entre sistemas, ni las aplicaciones de red del usuario final lo emplean habitualmente.
 
 Para esta red se utilizo el protoclo UDP
+
+
 ## Herramientas Utilizadas
 * Servicio de nube Google Cloud
 * Una instancia de VM en la nube google cloud (Sistema Operativo usado Ubuntu)
@@ -57,10 +59,10 @@ Se desplegará el siguiente menú, donde primero debemos seleccionar la opción 
 Luego se mostrara la siguiente página en donde debemos seleccionar la opción crear una nueva instancia:
 ![nueva instancia](img/crearI.png)
 
-Se desplegará la siguiente páginas, en donde debemos llenar los campos solicitados, en este caso el nombre ingresado fue conector.
+Se desplegará la siguiente página, en donde debemos llenar los campos solicitados, en este caso el nombre ingresado fue conector.
 ![nombre instancia](img/instanciaN.png)
 
-En el tipo de máquina escogemos la opción e2-micro ya que es la opción más barata.
+En el tipo de máquina escogemos la opción e2-micro ya que es la opción más económica.
 ![tipo máquina](img/tipoM.png)
 
 También podemos escoger el sistema operativo deseado, en esta ocasión se escogio el sistema operativo Debian GNU/Linux 10.
@@ -74,11 +76,12 @@ A continuación tenemos nuestra instancia creada, y podemos vizualizar y sus det
 Para poder acceder a la instancia utilizamos la opcion de ssh de google la cual abre la consola de la máquina virtual en el navegador. Solo debemos dar click en la siguiente opción
 ![ssh](img/ssh.png)
 
-Y la consola de la máquina virtual que se abre en el navegador es la siguiente;
+Y la consola de la máquina virtual que se abre en el navegador es la siguiente:
 ![Máquina Virtual](img/maquinaV.png)
 
 ## Permisos de la máquina virtual
 Debemos habilitar los siguientes permisos para permitir el la entrada y salida de datos.
+6
 Para eso vamos al menu de Cloud y seleccionamos la siguiente opcion:
 
 ![Firewall](img/fire.png)
@@ -144,7 +147,7 @@ Para descargar los archivos debemos ingresar los siguientes comandos en consola:
 * `cp clientetres.ovpn /home/`
 * `cp clientecuatro.ovpn /home/`
 
-Con esto hemos copiado los archivos de clientedos, clientetres, clientecuatro al hombe para asi poder descargarlos posteriormente, el archivo carlos.ovpn al ser el primero creado ya se encontraba en el home. 
+Con esto hemos copiado los archivos de clientedos, clientetres, clientecuatro al home para asi poder descargarlos posteriormente, el archivo carlos.ovpn al ser el primero creado ya se encontraba en el home. 
 
 Para poder descargar los archivos accedemos al menu que se despliega al seleccionar la tuerca en la esquina superior derecha y le damos click en la ocpión descargar
 
@@ -170,7 +173,7 @@ Al estar conectados se mostrará la siguiente interfaz
 Para verificar la conexión a la VPN vamos ala página de cual es mi IP y podemos observar que la IP que muestra es la misma IP pública de nuestra máquina virtual
 ![ip](img/ip.png)
 
-La conexión para los demás máquina y en los otros usuarios es la misma, solo se debe escoger la clave del cliente que se desea al momento de buscar el archivo .ovpn
+La conexión para los demás máquinas y en los otros usuarios es la misma, solo se debe escoger la clave del cliente que se desea al momento de buscar el archivo .ovpn
 
 ## Red Privada
 Luego de conectar las 4 máquina a la VPN, estas pueden comunciarse entre si, teniendo además un IP nueva la cuál corresponde a la red privada a la que estan conectadas, a continuación se muestra la IP de las máquina conectadas.
@@ -192,11 +195,11 @@ Luego de conectar las 4 máquina a la VPN, estas pueden comunciarse entre si, te
 A continuación se muestra la comunicación entre la máquina virtual en la nube con las máquina conectadas a la vpn. 
 Para esto debemos simplemente correr el comando `ping IP` donde la IP es la IP de cada máquina conectada a la VPN, las cuales se encuentra detalladas anteriomente.
 
-|   Comunicación con Carlos  | Comunicación con ClienteDos   |
+|   Comunicación con Carlos  | Comunicación con Cliente Dos   |
 |   -------------   |   ---------   |
 | ![Carlos](img/SSH-1.png) | ![Carlos](img/SSH-2.png)  |
 
-|   Comunicación con ClienteTres  | Comunicación con ClienteCuatro   |
+|   Comunicación con Cliente Tres  | Comunicación con Cliente Cuatro   |
 |   -------------   |   ---------   |
 | ![Carlos](img/SSH-3.png) | ![Carlos](img/SSH-4.png)  |
 
@@ -207,26 +210,26 @@ Para conocer la IP de nuestra instancia en la nube ya que esta esta en el sistem
 
 ![IP maquina virtual](img/IPMV.png)
 
-|   Carlos - MV  |  ClienteDos -MV   |
+|   Carlos - MV  |  Cliente Dos -MV   |
 |   -------------   |   ---------   |
 | ![Carlos](img/1-SSH.png) | ![Carlos](img/2-SSH.png)  |
 
-|  ClienteTres - MV  | ClienteCuatro - MV  |
+|  Cliente Tres - MV  | Cliente Cuatro - MV  |
 |   -------------   |   ---------   |
 | ![Carlos](img/3-SSH.png) | ![Carlos](img/4-SSH.png)  |
 
 ### Comunicación entre máquinas 
 A continuación se muestra la comunicación entre las máquina conectadas a la VPN.
 
-|  Carlos - Clientedos  | Carlos - Clientetres  |
+|  Carlos - Cliente dos  | Carlos - Cliente tres  |
 |   -------------   |   ---------   |
 | ![Carlos](img/1-2.png) | ![Carlos](img/1-3.png)  |
 
-|  Carlos - Clientecuatro  | Clientedos - Cliente carlos  |
+|  Carlos - Cliente cuatro  | Cliente dos - Cliente carlos  |
 |   -------------   |   ---------   |
 | ![Carlos](img/1-4.png) | ![Carlos](img/2-1.png)  |
 
-|  Clientedos - Cliente tres  | Clientedos - Clientecuatro  |
+|  Cliente dos - Cliente tres  | Cliente dos - Cliente cuatro  |
 |   -------------   |   ---------   |
 | ![Carlos](img/2-3.png) | ![Carlos](img/2-4.png)  |
 
@@ -245,7 +248,11 @@ A continuación se muestra la comunicación entre las máquina conectadas a la V
 | ![Carlos](img/4-2.png) | ![Carlos](img/4-3.png)  |
 
 
+## Consideraciones
+* Desactivar el firewall de windows 
+* Desactivar el firewall de los antivirus
 
+Esto es para que se permita la comunicación entre las máquina.
 ## Anexos 
 * [Creación de una cuenta en Google Cloud](https://www.youtube.com/watch?v=UEW-S7pWCiw)
 * [Link de descarga de OpenVpn](https://openvpn.net/vpn-client/)
